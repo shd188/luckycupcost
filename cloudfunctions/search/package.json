@@ -1,0 +1,10 @@
+{
+  "name": "search",
+  "version": "1.0.0",
+  "description": "搜索产品和物料",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}
+

@@ -1,0 +1,90 @@
+/* index.wxss */
+.container {
+  padding: 30rpx;
+  background-color: #F5F5F5;
+  min-height: 100vh;
+}
+
+/* 搜索框 */
+.search-box {
+  margin-bottom: 30rpx;
+}
+
+.search-input {
+  width: 100%;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+/* 结果列表 */
+.result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 列表项 */
+.result-item {
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.item-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.item-content {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+
+.item-cost, .item-spec, .item-unit-cost {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.item-spec {
+  margin-bottom: 5rpx;
+}
+
+.item-arrow {
+  font-size: 32rpx;
+  color: #CCCCCC;
+  margin-left: 20rpx;
+}
+
+/* 无结果提示 */
+.no-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.no-result-text {
+  font-size: 32rpx;
+  color: #999999;
+  margin-bottom: 20rpx;
+}
+
+.no-result-hint {
+  font-size: 24rpx;
+  color: #CCCCCC;
+}

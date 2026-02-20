@@ -1,0 +1,136 @@
+/* detail.wxss */
+.container {
+  padding: 30rpx;
+  background-color: #F5F5F5;
+  min-height: 100vh;
+}
+
+/* 头部 */
+.header {
+  margin-bottom: 30rpx;
+}
+
+.back-btn {
+  font-size: 32rpx;
+  color: #8B4513;
+  padding: 20rpx 0;
+  cursor: pointer;
+}
+
+/* 详情内容 */
+.detail-content {
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  padding: 40rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.product-title, .material-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+}
+
+.product-title .icon, .material-title .icon {
+  font-size: 48rpx;
+  margin-right: 10rpx;
+}
+
+.product-title .name, .material-title .name {
+  color: #333333;
+}
+
+.divider {
+  height: 1rpx;
+  background: #E5E5E5;
+  margin: 30rpx 0;
+}
+
+.total-cost {
+  text-align: center;
+  font-size: 48rpx;
+  color: #FF6B35;
+  font-weight: bold;
+  padding: 20rpx 0;
+}
+
+.cost-details {
+  margin-top: 30rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+}
+
+.detail-item {
+  background: #F9F9F9;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.detail-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+
+.detail-category {
+  font-size: 22rpx;
+  font-weight: normal;
+  color: #999999;
+  margin-left: 10rpx;
+}
+
+.detail-calculation {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.no-details {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #999999;
+  font-size: 24rpx;
+}
+
+/* 物料详情样式 */
+.spec-info {
+  margin: 20rpx 0;
+}
+
+.info-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+}
+
+.info-item {
+  font-size: 28rpx;
+  color: #666666;
+  margin-bottom: 15rpx;
+  line-height: 1.5;
+}
+
+.unit-cost {
+  text-align: center;
+  font-size: 36rpx;
+  color: #FF6B35;
+  font-weight: bold;
+  padding: 20rpx 0;
+}
+
+.category {
+  font-size: 28rpx;
+  color: #666666;
+  text-align: center;
+  padding: 20rpx 0;
+}
+

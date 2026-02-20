@@ -1,0 +1,77 @@
+<!--detail.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">← 返回</view>
+  </view>
+  
+  <!-- 产品详情 -->
+  <view wx:if="{{type === 'product' && product}}" class="detail-content">
+    <view class="product-title">
+      <text class="icon">☕</text>
+      <text class="name">{{product.name}}</text>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="total-cost">
+      <text>总成本：¥{{costInfo ? costInfo.totalCost : 0}}</text>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="cost-details">
+      <view class="section-title">成本明细：</view>
+      <view wx:if="{{costInfo && costInfo.details && costInfo.details.length > 0}}">
+        <view 
+          wx:for="{{costInfo.details}}" 
+          wx:key="index"
+          class="detail-item"
+        >
+          <view class="detail-name">
+            {{item.materialName}}
+            <text class="detail-category">({{item.category === 'material' ? '原料' : '包装'}})</text>
+          </view>
+          <view class="detail-calculation">
+            {{item.amount}}{{item.unit}} × ¥{{item.unitPrice}}/{{item.unit}} = ¥{{item.itemCost}}
+          </view>
+        </view>
+      </view>
+      <view wx:else class="no-details">
+        <text>暂无成本明细</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 物料详情 -->
+  <view wx:if="{{type === 'material' && material}}" class="detail-content">
+    <view class="material-title">
+      <text class="icon">🥛</text>
+      <text class="name">{{material.name}}</text>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="spec-info">
+      <view class="info-title">规格信息：</view>
+      <view class="info-item">
+        <text>规格数量：{{material.spec_amount}}{{material.spec_unit}}</text>
+      </view>
+      <view class="info-item">
+        <text>规格价格：¥{{material.spec_price}}</text>
+      </view>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="unit-cost">
+      <text>单位成本：¥{{unitPrice}}/{{material.spec_unit}}</text>
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="category">
+      <text>分类：{{material.category === 'material' ? '原料' : '包装'}}</text>
+    </view>
+  </view>
+</view>
+
