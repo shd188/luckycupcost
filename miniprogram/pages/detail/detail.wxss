@@ -121,6 +121,42 @@ page {
   display: block;
   font-size: 24rpx;
   color: #AEAEB2;
+  margin-bottom: 32rpx;
+}
+
+/* ─── Hero Prices ─── */
+.hero-prices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx;
+  padding-top: 32rpx;
+  border-top: 1rpx solid #F2F2F7;
+  margin-top: 32rpx;
+}
+
+.price-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.price-label {
+  font-size: 22rpx;
+  color: #8E8E93;
+  letter-spacing: 1rpx;
+}
+
+.price-value {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  line-height: 1.2;
+}
+
+.price-special {
+  color: #C9943A;
 }
 
 /* ─── Section ─── */
