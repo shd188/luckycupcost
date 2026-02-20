@@ -10,8 +10,9 @@ page {
 }
 
 /* ─── Page Header ─── */
+/* ① 移除返回按钮后，减少顶部间距 */
 .page-header {
-  padding: 56rpx 40rpx 44rpx;
+  padding: 40rpx 40rpx 44rpx;
 }
 
 .product-header {
@@ -20,26 +21,6 @@ page {
 
 .material-header {
   background: linear-gradient(160deg, #14291D 0%, #166534 100%);
-}
-
-.back-btn {
-  display: flex;
-  align-items: center;
-  margin-bottom: 40rpx;
-}
-
-.back-arrow {
-  font-size: 60rpx;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1;
-  margin-right: 4rpx;
-  font-weight: 200;
-}
-
-.back-text {
-  font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 400;
 }
 
 .header-body {
@@ -165,18 +146,27 @@ page {
   letter-spacing: 1rpx;
 }
 
+/* ② view 包裹 + flex 居中，消除拉伸 */
 .section-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48rpx;
+  padding: 0 20rpx;
+  border-radius: 24rpx;
+  background: #F2F2F7;
+}
+
+.section-badge-text {
   font-size: 22rpx;
   color: #8E8E93;
-  background: #F2F2F7;
-  padding: 6rpx 20rpx;
-  border-radius: 20rpx;
+  line-height: 1;
 }
 
 /* ─── Ingredient Row ─── */
 .ingredient-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   padding: 24rpx 0;
   border-bottom: 1rpx solid #F2F2F7;
 }
@@ -186,14 +176,24 @@ page {
   padding-bottom: 0;
 }
 
-/* 彩点：与第一行名称文字垂直居中 */
+.ingredient-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ③ 彩点在 ingredient-top 内，与名称和标签天然同行同基线 */
+.ingredient-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+  gap: 12rpx;
+}
+
 .ingredient-dot {
-  width: 14rpx;
-  height: 14rpx;
+  width: 12rpx;
+  height: 12rpx;
   border-radius: 50%;
-  margin-right: 20rpx;
   flex-shrink: 0;
-  margin-top: 10rpx;
 }
 
 .dot-blue {
@@ -204,25 +204,10 @@ page {
   background: #22C55E;
 }
 
-.ingredient-body {
-  flex: 1;
-  min-width: 0;
-}
-
-/* 名称 + 标签同行，垂直居中，不换行 */
-.ingredient-top {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8rpx;
-  gap: 12rpx;
-  flex-wrap: nowrap;
-}
-
 .ingredient-name {
   font-size: 28rpx;
   font-weight: 600;
   color: #1C1C1E;
-  line-height: 1.4;
   flex-shrink: 1;
   min-width: 0;
   overflow: hidden;
@@ -249,10 +234,12 @@ page {
   color: #16A34A;
 }
 
+/* 公式缩进与名称对齐（dot 12 + gap 12 = 24rpx）*/
 .ingredient-formula {
   font-size: 24rpx;
   color: #8E8E93;
   display: block;
+  padding-left: 24rpx;
   line-height: 1.4;
 }
 
@@ -262,7 +249,6 @@ page {
   color: #C9943A;
   margin-left: 20rpx;
   flex-shrink: 0;
-  padding-top: 4rpx;
 }
 
 /* ─── Spec Grid ─── */
@@ -349,7 +335,6 @@ page {
 .category-text {
   font-size: 28rpx;
   font-weight: 600;
-  color: inherit;
 }
 
 .tag-blue-lg .category-text {
