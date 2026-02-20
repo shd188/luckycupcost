@@ -4,9 +4,9 @@
     "pages/detail/detail"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "幸运咖产品成本计算器",
-    "navigationBarBackgroundColor": "#8B4513"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Lucky Cup",
+    "navigationBarBackgroundColor": "#1C1C1E"
   },
   "style": "v2",
   "componentFramework": "glass-easel",

@@ -1,58 +1,111 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- 搜索框 -->
-  <view class="search-box">
-    <input 
-      class="search-input" 
-      placeholder="🔍 搜索产品或物料..."
-      value="{{searchKeyword}}"
-      bindinput="onSearchInput"
-    />
+
+  <!-- 顶部品牌区 + 搜索框 -->
+  <view class="header">
+    <view class="brand">
+      <text class="brand-logo">☕</text>
+      <view class="brand-info">
+        <text class="brand-name">Lucky Cup</text>
+        <text class="brand-tagline">Cost Calculator</text>
+      </view>
+    </view>
+    <view class="search-bar">
+      <text class="search-icon">⌕</text>
+      <input
+        class="search-input"
+        placeholder="搜索产品或物料名称..."
+        placeholder-class="search-placeholder"
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+      />
+    </view>
   </view>
-  
-  <!-- 结果列表（只在有搜索关键词时显示） -->
-  <view wx:if="{{searchKeyword}}" class="result-list">
-    <!-- 产品项 -->
-    <view 
-      wx:for="{{productResults}}" 
-      wx:key="_id"
-      class="result-item product-item"
-      bindtap="goToProductDetail"
-      data-item="{{item}}"
-    >
-      <view class="item-icon">☕</view>
-      <view class="item-content">
-        <view class="item-name">{{item.name}}</view>
-        <view class="item-cost">💰 成本：¥{{item.totalCost}}</view>
-      </view>
-      <view class="item-arrow">></view>
-    </view>
-    
-    <!-- 物料项 -->
-    <view 
-      wx:for="{{materialResults}}" 
-      wx:key="_id"
-      class="result-item material-item"
-      bindtap="goToMaterialDetail"
-      data-item="{{item}}"
-    >
-      <view class="item-icon">🥛</view>
-      <view class="item-content">
-        <view class="item-name">{{item.name}}</view>
-        <view class="item-spec">
-          📦 {{item.spec_amount}}{{item.spec_unit}} / ¥{{item.spec_price}}
+
+  <!-- 初始空白提示 -->
+  <view wx:if="{{!searchKeyword}}" class="empty-state">
+    <text class="empty-icon">☕</text>
+    <text class="empty-title">搜索开始</text>
+    <text class="empty-desc">输入关键词搜索产品或物料</text>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view wx:if="{{searchKeyword}}" class="results">
+
+    <!-- 产品结果 -->
+    <view wx:if="{{productResults.length > 0}}" class="result-section">
+      <view class="section-header">
+        <view class="section-label-wrap">
+          <view class="section-dot product-dot"></view>
+          <text class="section-label">产品</text>
         </view>
-        <view class="item-unit-cost">
-          💵 单位成本：¥{{item.unitPrice}}/{{item.spec_unit}}
-        </view>
+        <text class="section-count">{{productResults.length}} 项</text>
       </view>
-      <view class="item-arrow">></view>
+      <view
+        wx:for="{{productResults}}"
+        wx:key="_id"
+        class="result-card"
+        bindtap="goToProductDetail"
+        data-item="{{item}}"
+      >
+        <view class="card-accent product-accent"></view>
+        <view class="card-main">
+          <view class="card-icon-wrap product-icon-bg">
+            <text class="card-icon">☕</text>
+          </view>
+          <view class="card-info">
+            <text class="card-name">{{item.name}}</text>
+            <view class="card-cost-row">
+              <text class="cost-label">成本</text>
+              <text class="cost-value">¥ {{item.totalCost}}</text>
+            </view>
+          </view>
+        </view>
+        <text class="card-arrow">›</text>
+      </view>
     </view>
-    
-    <!-- 无结果提示 -->
+
+    <!-- 物料结果 -->
+    <view wx:if="{{materialResults.length > 0}}" class="result-section">
+      <view class="section-header">
+        <view class="section-label-wrap">
+          <view class="section-dot material-dot"></view>
+          <text class="section-label">物料</text>
+        </view>
+        <text class="section-count">{{materialResults.length}} 项</text>
+      </view>
+      <view
+        wx:for="{{materialResults}}"
+        wx:key="_id"
+        class="result-card"
+        bindtap="goToMaterialDetail"
+        data-item="{{item}}"
+      >
+        <view class="card-accent material-accent"></view>
+        <view class="card-main">
+          <view class="card-icon-wrap material-icon-bg">
+            <text class="card-icon">{{item.category === 'packaging' ? '📦' : '🫙'}}</text>
+          </view>
+          <view class="card-info">
+            <text class="card-name">{{item.name}}</text>
+            <view class="card-meta-row">
+              <text class="meta-spec">{{item.spec_amount}}{{item.spec_unit}} / ¥{{item.spec_price}}</text>
+              <text class="meta-unit-cost">¥{{item.unitPrice}}/{{item.spec_unit}}</text>
+            </view>
+          </view>
+        </view>
+        <text class="card-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 无结果 -->
     <view wx:if="{{hasNoResult && !isSearching}}" class="no-result">
-      <text class="no-result-text">😔 未找到相关结果</text>
-      <text class="no-result-hint">请尝试其他关键词搜索</text>
+      <text class="no-result-icon">◎</text>
+      <text class="no-result-title">未找到相关结果</text>
+      <text class="no-result-desc">请尝试其他关键词</text>
     </view>
+
   </view>
+
 </view>

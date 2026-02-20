@@ -1,4 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "幸运咖产品成本计算器"
+  "navigationBarTitleText": "Lucky Cup",
+  "navigationBarBackgroundColor": "#1C1C1E",
+  "navigationBarTextStyle": "white"
 }

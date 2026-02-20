@@ -1,77 +1,116 @@
 <!--detail.wxml-->
 <view class="container">
-  <view class="header">
-    <view class="back-btn" bindtap="goBack">← 返回</view>
+
+  <!-- 产品详情 Header -->
+  <view wx:if="{{type === 'product' && product}}" class="page-header product-header">
+    <view class="header-body">
+      <text class="header-icon">☕</text>
+      <text class="header-title">{{product.name}}</text>
+    </view>
+    <view class="header-badge product-badge">产品</view>
   </view>
-  
-  <!-- 产品详情 -->
-  <view wx:if="{{type === 'product' && product}}" class="detail-content">
-    <view class="product-title">
-      <text class="icon">☕</text>
-      <text class="name">{{product.name}}</text>
+
+  <!-- 物料详情 Header -->
+  <view wx:if="{{type === 'material' && material}}" class="page-header material-header">
+    <view class="header-body">
+      <text class="header-icon">{{material.category === 'packaging' ? '📦' : '🫙'}}</text>
+      <text class="header-title">{{material.name}}</text>
     </view>
-    
-    <view class="divider"></view>
-    
-    <view class="total-cost">
-      <text>总成本：¥{{costInfo ? costInfo.totalCost : 0}}</text>
+    <view class="header-badge material-badge">{{material.category === 'material' ? '原料' : '包装'}}</view>
+  </view>
+
+  <!-- ───────── 产品详情内容 ───────── -->
+  <view wx:if="{{type === 'product' && product}}" class="content">
+
+    <!-- 总成本大卡片 -->
+    <view class="hero-card">
+      <text class="hero-label">TOTAL COST</text>
+      <view class="hero-amount">
+        <text class="hero-currency">¥</text>
+        <text class="hero-number">{{costInfo ? costInfo.totalCost : 0}}</text>
+      </view>
+      <text class="hero-sub">基于当前物料价格实时计算</text>
     </view>
-    
-    <view class="divider"></view>
-    
-    <view class="cost-details">
-      <view class="section-title">成本明细：</view>
-      <view wx:if="{{costInfo && costInfo.details && costInfo.details.length > 0}}">
-        <view 
-          wx:for="{{costInfo.details}}" 
-          wx:key="index"
-          class="detail-item"
-        >
-          <view class="detail-name">
-            {{item.materialName}}
-            <text class="detail-category">({{item.category === 'material' ? '原料' : '包装'}})</text>
-          </view>
-          <view class="detail-calculation">
-            {{item.amount}}{{item.unit}} × ¥{{item.unitPrice}}/{{item.unit}} = ¥{{item.itemCost}}
-          </view>
+
+    <!-- 成本明细 -->
+    <view class="section">
+      <view class="section-hd">
+        <text class="section-title">成本明细</text>
+        <!-- ② 用 view 包裹，才能 flex 居中 -->
+        <view class="section-badge" wx:if="{{costInfo && costInfo.details}}">
+          <text class="section-badge-text">{{costInfo.details.length}} 项</text>
         </view>
       </view>
-      <view wx:else class="no-details">
+
+      <view wx:if="{{costInfo && costInfo.details && costInfo.details.length > 0}}">
+        <view
+          wx:for="{{costInfo.details}}"
+          wx:key="index"
+          class="ingredient-row"
+        >
+          <view class="ingredient-body">
+            <!-- ③ 彩点和名称、标签在同一个 flex 容器内 -->
+            <view class="ingredient-top">
+              <view class="ingredient-dot {{item.category === 'material' ? 'dot-blue' : 'dot-green'}}"></view>
+              <text class="ingredient-name">{{item.materialName}}</text>
+              <text class="ingredient-tag {{item.category === 'material' ? 'tag-blue' : 'tag-green'}}">{{item.category === 'material' ? '原料' : '包装'}}</text>
+            </view>
+            <text class="ingredient-formula">{{item.amount}} {{item.unit}} × ¥{{item.unitPrice}} / {{item.unit}}</text>
+          </view>
+          <text class="ingredient-cost">¥{{item.itemCost}}</text>
+        </view>
+      </view>
+
+      <view wx:else class="empty-detail">
         <text>暂无成本明细</text>
       </view>
     </view>
-  </view>
-  
-  <!-- 物料详情 -->
-  <view wx:if="{{type === 'material' && material}}" class="detail-content">
-    <view class="material-title">
-      <text class="icon">🥛</text>
-      <text class="name">{{material.name}}</text>
-    </view>
-    
-    <view class="divider"></view>
-    
-    <view class="spec-info">
-      <view class="info-title">规格信息：</view>
-      <view class="info-item">
-        <text>规格数量：{{material.spec_amount}}{{material.spec_unit}}</text>
-      </view>
-      <view class="info-item">
-        <text>规格价格：¥{{material.spec_price}}</text>
-      </view>
-    </view>
-    
-    <view class="divider"></view>
-    
-    <view class="unit-cost">
-      <text>单位成本：¥{{unitPrice}}/{{material.spec_unit}}</text>
-    </view>
-    
-    <view class="divider"></view>
-    
-    <view class="category">
-      <text>分类：{{material.category === 'material' ? '原料' : '包装'}}</text>
-    </view>
-  </view>
-</view>
 
+  </view>
+
+  <!-- ───────── 物料详情内容 ───────── -->
+  <view wx:if="{{type === 'material' && material}}" class="content">
+
+    <!-- 单位成本大卡片 -->
+    <view class="hero-card">
+      <text class="hero-label">UNIT COST</text>
+      <view class="hero-amount">
+        <text class="hero-currency">¥</text>
+        <text class="hero-number">{{unitPrice}}</text>
+        <text class="hero-unit">/ {{material.spec_unit}}</text>
+      </view>
+      <text class="hero-sub">基于规格信息计算</text>
+    </view>
+
+    <!-- 规格信息 -->
+    <view class="section">
+      <view class="section-hd">
+        <text class="section-title">规格信息</text>
+      </view>
+      <view class="spec-grid">
+        <view class="spec-cell">
+          <text class="spec-label">规格数量</text>
+          <text class="spec-value">{{material.spec_amount}}</text>
+          <text class="spec-unit-text">{{material.spec_unit}}</text>
+        </view>
+        <view class="spec-divider"></view>
+        <view class="spec-cell">
+          <text class="spec-label">规格总价</text>
+          <text class="spec-value price-amber">{{material.spec_price}}</text>
+          <text class="spec-unit-text">元</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分类标签 -->
+    <view class="section category-section">
+      <text class="category-label">分类</text>
+      <view class="category-tag {{material.category === 'material' ? 'tag-blue-lg' : 'tag-green-lg'}}">
+        <text class="category-icon">{{material.category === 'packaging' ? '📦' : '🫙'}}</text>
+        <text class="category-text">{{material.category === 'material' ? '原料' : '包装'}}</text>
+      </view>
+    </view>
+
+  </view>
+
+</view>
