@@ -30,6 +30,8 @@ export interface Product {
   _id: string;
   name: string;
   recipe: RecipeItem[];
+  price_normal?: number;  // 常规价格
+  price_special?: number;  // 特殊价格
 }
 
 /**

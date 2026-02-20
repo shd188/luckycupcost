@@ -30,6 +30,18 @@
         <text class="hero-number">{{costInfo ? costInfo.totalCost : 0}}</text>
       </view>
       <text class="hero-sub">基于当前物料价格实时计算</text>
+      
+      <!-- 产品价格 -->
+      <view wx:if="{{product.price_normal || product.price_special}}" class="hero-prices">
+        <view class="price-item" wx:if="{{product.price_normal}}">
+          <text class="price-label">常规价格</text>
+          <text class="price-value">¥{{product.price_normal}}</text>
+        </view>
+        <view class="price-item" wx:if="{{product.price_special}}">
+          <text class="price-label">特殊价格</text>
+          <text class="price-value price-special">¥{{product.price_special}}</text>
+        </view>
+      </view>
     </view>
 
     <!-- 成本明细 -->
